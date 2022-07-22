@@ -20,12 +20,12 @@ const {
       const veAllocateFactory = await ethers.getContractFactory("veAllocate", account);
       const veAllocate = await veAllocateFactory.deploy();
 
-      return { veAllocate, owner, account };
+      return { owner, account, veAllocate };
     }
   
     describe("Allocate", function () {
       it("Should allocate to contract", async function () {
-        const { veAllocate, owner, account } = await loadFixture(deployVeAllocate);
+        const { owner, account, veAllocate } = await loadFixture(deployVeAllocate);
   
         // allocate to test
         let result = await veAllocate.allocate(100, "test", {from: account.address})
